@@ -35,7 +35,7 @@ def v1_project_search(textSearch="", mapperLevel='ALL', projectStatuses='', page
         assert request_count < 100, "api search query stuck in loop"
 
         j = r.json()
-        logger.debug(j)
+        logger.debug(j.keys())
         assert r.status_code == 200, f"request failed: {j}"
 
         df = pd.DataFrame(j['results'])

@@ -6,4 +6,5 @@ import pandas as pd
 def test_v1_project_search():
 
     page1 = next(tm.v1_project_search(textSearch='covid'))
-    assert isinstance(results, pd.DataFrame)
+    assert isinstance(page1, pd.DataFrame)
+    assert isinstance(page1.status, pd.Series)
