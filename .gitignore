@@ -3,3 +3,5 @@
 .venv
 *.pyc
 __pycache__
+tests/test_v1
+tests/test_v2
