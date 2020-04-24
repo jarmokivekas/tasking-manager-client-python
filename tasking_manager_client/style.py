@@ -1,5 +1,4 @@
 from matplotlib.colors import LinearSegmentedColormap
-
 from tasking_manager_client import DEFAULT_INSTANCE
 
 # colors from the HOTOSM media kit :)
@@ -19,8 +18,12 @@ hotosm_colors = {
 
 def hotosm_cmap():
     # create a colormap for colorign mappedness and validatedness percentages
-    colors = [hotosm_colors['red'],hotosm_colors['orange'],hotosm_colors['green']]
+    colors = [
+        hotosm_colors['red'], hotosm_colors['orange'],
+        hotosm_colors['green']
+    ]
     colormap = LinearSegmentedColormap.from_list('hotosm-RdOrGr', colors, N=20)
+    return colormap
 
 def format_priority(val):
     """Pandas styler, set cell color based on proejct priority in TM"""
@@ -33,6 +36,7 @@ def format_priority(val):
     color = lookup[val]
     return f'background-color: {color}'
 
+
 def format_status(val: str):
     """Pandas styler, set cell color based on proejct status in TM"""
     lookup = {
@@ -43,11 +47,14 @@ def format_status(val: str):
     color = lookup[val]
     return f'background-color: {color}'
 
-def format_project_link(id: int) -> str:
-    """Returns project URL for given project id. Defaults to main TM instance."""
+
+def format_project_link(id: int, instance=DEFAULT_INSTANCE) -> str:
+    """Returns project URL for given project id.
+    Defaults to main TM instance."""
     return f"https://{instance}/project/{id}"
 
-def format_clickable_project_id(id: int) -> str:
+
+def format_clickable_project_id(id: int, instance=DEFAULT_INSTANCE) -> str:
     """Returns a html link tag string linking to the project"""
     url = format_project_link(id, instance=instance)
     return f'<a href="{url}">{id}</a>'
