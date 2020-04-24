@@ -1,0 +1,44 @@
+
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+
+
+[tool.flit.metadata]
+module = "tasking_manager_client"
+author = "Jarmo Kivekas"
+author-email = ""
+home-page = "https://github.com/jarmokivekas/taskin-manager-client-python"
+requires = [
+    # add dependencies to python packages in this array
+    "loguru",
+    "pandas",
+    "geopandas",
+    "requests"
+]
+
+requires-python = ">=3.5,<4"
+classifiers=[
+    'Intended Audience :: Developers',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+]
+
+description-file = "README.md"
+
+# [tool.flit.scripts]
+#
+# transit_simulation = "tasking_manager_client.cli:main"
+#
+
+[tool.flit.metadata.requires-extra]
+test = [
+  "pytest",
+  "flake8",
+  "coverage",
+  "flit"
+]
+doc = [
+
+]
