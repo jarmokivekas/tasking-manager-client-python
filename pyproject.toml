@@ -35,6 +35,7 @@ description-file = "README.md"
 [tool.flit.metadata.requires-extra]
 test = [
   "pytest",
+  "vcrpy",
   "flake8",
   "coverage",
   "flit"
