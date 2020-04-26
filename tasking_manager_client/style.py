@@ -25,27 +25,28 @@ def hotosm_cmap():
     colormap = LinearSegmentedColormap.from_list('hotosm-RdOrGr', colors, N=20)
     return colormap
 
-def format_priority(val):
-    """Pandas styler, set cell color based on proejct priority in TM"""
+def format_priority(val: str) -> str:
+    """Pandas styler, set cell color based on project priority in TM.
+    val: on of LOW, MEDIUM, HIGH, or URGENT"""
     lookup = {
         'LOW': hotosm_colors['grey-light'],
         'MEDIUM': hotosm_colors['green'],
         'HIGH': hotosm_colors['orange'],
         'URGENT': hotosm_colors['red']
     }
-    color = lookup[val]
-    return f'background-color: {color}'
+    color = lookup.get(val, "none")
+    return f'background-color: {color};'
 
 
-def format_status(val: str):
+def format_status(val: str) -> str:
     """Pandas styler, set cell color based on proejct status in TM"""
     lookup = {
         'ARCHIVED': hotosm_colors['grey-light'],
         'PUBLISHED': hotosm_colors['green'],
         'DRAFT': hotosm_colors['orange']
     }
-    color = lookup[val]
-    return f'background-color: {color}'
+    color = lookup.get(val, "none")
+    return f'background-color: {color};'
 
 
 def format_project_link(id: int, instance=DEFAULT_INSTANCE) -> str:

@@ -15,7 +15,8 @@ requires = [
   "loguru",
   "pandas",
   "geopandas",
-  "requests"
+  "requests",
+  "matplotlib"
 ]
 
 [tool.flit.metadata.requires-extra]

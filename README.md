@@ -9,10 +9,10 @@ This python library is intended for workflow automation with the [HOTOSM Tasking
 The package is not on PyPI, but can be installed by supplying the git url to `pip`:
 
 ```
-python3 -m pip install https://github.com/jarmokivekas/tasking-manager-client-python.git
+python3 -m pip install git+https://github.com/jarmokivekas/tasking-manager-client-python.git
 ```
 
-Using the git url in a requirements.txt should also work.
+Using the git+url in a requirements.txt should also work.
 
 ## Configuring development environment
 
