@@ -5,3 +5,4 @@
 __pycache__
 tests/test_v1*
 tests/test_v2*
+tests/fixtures

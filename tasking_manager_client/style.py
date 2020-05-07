@@ -17,6 +17,7 @@ hotosm_colors = {
 
 
 def hotosm_cmap():
+    """returns a matplotlib red-orange-green colormap using HOTOSM color palette"""
     # create a colormap for colorign mappedness and validatedness percentages
     colors = [
         hotosm_colors['red'], hotosm_colors['orange'],
@@ -49,13 +50,13 @@ def format_status(val: str) -> str:
     return f'background-color: {color};'
 
 
-def format_project_link(id: int, instance=DEFAULT_INSTANCE) -> str:
+def format_project_link(id: int, instance:str=DEFAULT_INSTANCE) -> str:
     """Returns project URL for given project id.
     Defaults to main TM instance."""
     return f"https://{instance}/project/{id}"
 
 
-def format_clickable_project_id(id: int, instance=DEFAULT_INSTANCE) -> str:
+def format_clickable_project_id(id: int, instance:str=DEFAULT_INSTANCE) -> str:
     """Returns a html link tag string linking to the project"""
     url = format_project_link(id, instance=instance)
     return f'<a href="{url}">{id}</a>'
