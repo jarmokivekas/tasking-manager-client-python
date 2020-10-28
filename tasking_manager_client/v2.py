@@ -23,27 +23,18 @@ def projects_id_contributions_queries_day(id:int, instance:str=DEFAULT_INSTANCE_
 
 
 
-# with vcr.use_cassette('tests/fixtures/notebooks.yaml'):
 
-
-
-
-def project_search(textSearch:str="", mapperLevel:str='ALL', projectStatuses:str='', page:int = 1, token:str='', instance:str=DEFAULT_INSTANCE_API):
-    """Uses GET v1/project/search, generator of search result pages staring from `page`
+def project_search(filters, page:int = 1, token:str='',
+    instance:str=DEFAULT_INSTANCE_API):
+    """Uses GET `/v2/projects/` search, generator of search result pages staring from `page`
     projectStatuses: one or both of ARCHIVED, DRAFT, separated by comma"""
-    # both must be empty, or both must be non-empty
-    assert mapperLevel in ['BEGINNER', 'INTERMEDIATE', 'ADVANCED', 'ALL'], "invalid mapper category"
-    # assert ('DRAFT' in projectStatuses) == ('Token' in token), "Searching DRAFTs requires auth token"
-    request_count = 0
-    while True:
 
+    request_count = 0
+    get_params = filters
+    while True:
+        get_params['page'] = page
         r = requests.get(f"https://{instance}/api/v2/projects/",
-            params = {
-                'textSearch': textSearch,
-                'mapperLevel': mapperLevel,
-                'projectStatuses': projectStatuses,
-                'page': page
-            },
+            params = get_params,
             headers = {
                 'Accept-Language': '*',
                 'Content-Type': 'application/json',

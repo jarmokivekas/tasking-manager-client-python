@@ -20,7 +20,7 @@ def test_v2_projects_id_contributions_queries_day():
 @vcr.use_cassette()
 def test_v1_project_search_all():
 
-    pages = pd.concat(tm.v2.project_search(textSearch='covid'))
+    pages = pd.concat(tm.v2.project_search(dict(textSearch='covid')))
     assert isinstance(pages, pd.DataFrame)
     assert isinstance(pages.status, pd.Series)
     assert len(pages) > 14
@@ -28,7 +28,28 @@ def test_v1_project_search_all():
 @vcr.use_cassette()
 def test_v2_project_search_first_page():
 
-    page1 = next(tm.v2.project_search(textSearch='covid'))
+    page1 = next(tm.v2.project_search(dict(textSearch='covid')))
     assert isinstance(page1, pd.DataFrame)
     assert isinstance(page1.status, pd.Series)
     assert len(page1) <= 14
+
+@vcr.use_cassette()
+def test_v2_project_search_draft():
+
+    page1 = next(tm.v2.project_search(dict(textSearch='covid', projectStatuses='' )))
+    assert isinstance(page1, pd.DataFrame)
+    assert isinstance(page1.status, pd.Series)
+    assert len(page1) <= 14
+
+
+# @vcr.use_cassette()
+# def test_v2_project_search_draft_archive_published():
+#     textSearch='covid'
+#     projectStatuses='DRAFT,ARCHIVED,PUBLISHED'
+#     result = pd.concat(
+#         tm.v2.project_search(
+#             textSearch=textSearch,
+#             projectStatuses=projectStatuses
+#         ),
+#         ignore_index=True
+#     );
