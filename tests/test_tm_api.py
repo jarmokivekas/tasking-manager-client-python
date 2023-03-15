@@ -18,7 +18,7 @@ def test_v2_projects_id_contributions_queries_day():
     assert isinstance(j['stats'], list)
 
 @vcr.use_cassette()
-def test_v1_project_search_all():
+def test_v2_project_search_all():
 
     pages = pd.concat(tm.v2.project_search(dict(textSearch='covid')))
     assert isinstance(pages, pd.DataFrame)
